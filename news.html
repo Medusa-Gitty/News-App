@@ -14,12 +14,16 @@
         cursor: pointer;
       }
       img {
+        margin: auto;
         width: 100%;
+      }
+      h4 {
+        text-align: center;
       }
     </style>
   </head>
   <body>
-    <h1 onclick="goto()">The Daily Bugle</h1>
+    <h1 onclick="goto()">The Daily Herald</h1>
     <hr />
     <div id="display"></div>
   </body>
@@ -38,7 +42,19 @@
     var title = document.createElement(`h3`);
     title.textContent = el.title;
 
-    displayPanel.append(img, title);
+    var author = document.createElement(`i`);
+    author.textContent = `- ` + el.author;
+
+    var desc = document.createElement(`h4`);
+    desc.textContent = el.description;
+
+    var hr = document.createElement(`hr`);
+    hr.style.width = `50%`;
+
+    var content = document.createElement(`p`);
+    content.textContent = el.content;
+
+    displayPanel.append(img, title, author, hr, desc, content);
   }
 
   display(data);

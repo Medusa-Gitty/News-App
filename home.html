@@ -10,6 +10,9 @@
       body {
         font-family: "Urbanist", sans-serif;
       }
+      h3 {
+        cursor: pointer;
+      }
       #news_box {
         display: grid;
         grid-template-columns: auto auto auto auto;
@@ -23,9 +26,11 @@
     </style>
   </head>
   <body>
-    <h1>The Daily Bugle</h1>
+    <h1>The Daily Herald</h1>
     <hr />
-    <h1>Trending News</h1>
+    <h3 onclick="goto()">Search</h3>
+    <hr />
+    <h2>Trending News</h2>
     <div id="news_box"></div>
   </body>
 </html>
@@ -73,4 +78,7 @@
     });
   }
   ///////////////////////////////
+  function goto() {
+    window.location.href = `search.html`;
+  }
 </script>
