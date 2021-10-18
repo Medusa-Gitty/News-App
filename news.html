@@ -10,13 +10,40 @@
       body {
         font-family: "Urbanist", sans-serif;
       }
+      h1 {
+        cursor: pointer;
+      }
       img {
         width: 100%;
       }
     </style>
   </head>
   <body>
-    <h1>The Daily Bugle</h1>
+    <h1 onclick="goto()">The Daily Bugle</h1>
     <hr />
+    <div id="display"></div>
   </body>
 </html>
+<script>
+  ////////////////////////////////////////////////
+  var displayPanel = document.getElementById(`display`);
+
+  var data = JSON.parse(window.localStorage.getItem(`newsData`));
+  console.log(data);
+
+  function display(el) {
+    var img = document.createElement(`img`);
+    img.src = el.urlToImage;
+
+    var title = document.createElement(`h3`);
+    title.textContent = el.title;
+
+    displayPanel.append(img, title);
+  }
+
+  display(data);
+  ///////////////////////////////////////////////
+  function goto() {
+    window.location.href = `home.html`;
+  }
+</script>
