@@ -10,15 +10,22 @@
       body {
         font-family: "Urbanist", sans-serif;
       }
-      img {
-        width: 100%;
-      }
       input {
         font-family: "Urbanist", sans-serif;
         width: 99%;
         height: 30px;
         border: 1px solid black;
         text-align: center;
+      }
+      #newsBox {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+      }
+      #newsBox > div {
+        margin: 10px;
+      }
+      img {
+        width: 100%;
       }
     </style>
   </head>
@@ -28,5 +35,47 @@
     <div class="search_bar">
       <input type="text" id="news" placeholder="Search for a topic" />
     </div>
+    <div id="newsBox"></div>
   </body>
 </html>
+<script>
+  let news_SearchList = document.getElementById(`newsBox`);
+
+  async function searchNews(q) {
+    try {
+      let res = await fetch(
+        `https://newsapi.org/v2/everything?q=${q}&from=2021-10-18&sortBy=popularity&apiKey=8d7efe63885640cc97feb0e6f3731bc0`
+      );
+
+      let data = await res.json();
+      data = data.articles;
+      appendNews(data);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  searchNews(`tesla`);
+
+  function appendNews(news) {
+    if (news == undefined) {
+      return false;
+    }
+    news_SearchList.innerHTML = null;
+    news.forEach((el) => {
+      let div = document.createElement(`div`);
+      div.style.cursor = `pointer`;
+
+      let img = document.createElement(`img`);
+      img.src = el.urlToImage;
+
+      let title = document.createElement(`p`);
+      title.textContent = el.title;
+
+      let hr = document.createElement(`hr`);
+
+      div.append(img, title, hr);
+      news_SearchList.append(div);
+    });
+  }
+</script>
