@@ -58,7 +58,7 @@
       data = data.articles;
       //   appendNews(data);
       return data;
-      console.log(data);
+      //   console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -95,9 +95,8 @@
       return false;
     }
     let res = await searchNews(name);
-    let news_data = res.Search;
+    let news_data = res;
     appendNews(news_data);
-    console.log(res);
   }
 
   //debounce
