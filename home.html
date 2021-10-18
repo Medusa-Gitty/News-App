@@ -5,6 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap");
+      body {
+        font-family: "Urbanist", sans-serif;
+      }
+      #news_box {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+      }
+      #news_box > div {
+        margin: 10px;
+      }
+      img {
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <h1>News Brand</h1>
@@ -23,7 +39,7 @@
   var news_box = document.getElementById(`news_box`);
 
   fetch(
-    `https://newsapi.org/v2/top-headlines?country=in&apiKey=8d7efe63885640cc97feb0e6f3731bc0`
+    `https://newsapi.org/v2/top-headlines?country=us&apiKey=8d7efe63885640cc97feb0e6f3731bc0`
   ).then(function (res) {
     res.json().then(function (res) {
       res = res.articles;
