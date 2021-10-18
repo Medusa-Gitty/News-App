@@ -45,6 +45,8 @@
     });
   });
 
+  var newsData;
+
   function showNews(news) {
     news_box.innerHTML = null;
     news.forEach((el) => {
@@ -61,6 +63,13 @@
 
       div.append(img, title, hr);
       news_box.append(div);
+
+      div.addEventListener(`click`, function () {
+        newsData = el;
+        window.localStorage.setItem(`newsData`, JSON.stringify(newsData));
+        // console.log(newsData);
+      });
     });
   }
+  ///////////////////////////////
 </script>
