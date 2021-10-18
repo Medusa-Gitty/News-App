@@ -10,6 +10,9 @@
       body {
         font-family: "Urbanist", sans-serif;
       }
+      h1 {
+        cursor: pointer;
+      }
       input {
         font-family: "Urbanist", sans-serif;
         width: 99%;
@@ -22,6 +25,7 @@
         grid-template-columns: auto auto auto auto;
       }
       #newsBox > div {
+        cursor: pointer;
         margin: 10px;
       }
       img {
@@ -30,7 +34,7 @@
     </style>
   </head>
   <body>
-    <h1>The Daily Bugle</h1>
+    <h1 onclick="goTo()">The Daily Bugle</h1>
     <hr />
     <div class="search_bar">
       <input
@@ -47,6 +51,7 @@
   var timerId;
 
   let news_SearchList = document.getElementById(`newsBox`);
+  let mainPage = document.getElementById(`mainPage`);
 
   async function searchNews(q) {
     try {
@@ -107,5 +112,10 @@
     timerId = setTimeout(function () {
       func();
     }, delay);
+  }
+
+  ///////////////////////////////////////////////////
+  function goTo() {
+    window.location.href = `home.html`;
   }
 </script>
