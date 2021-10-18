@@ -33,12 +33,19 @@
     <h1>The Daily Bugle</h1>
     <hr />
     <div class="search_bar">
-      <input type="text" id="news" placeholder="Search for a topic" />
+      <input
+        type="text"
+        id="news"
+        oninput="debounce(main,500)"
+        placeholder="Search for a topic"
+      />
     </div>
     <div id="newsBox"></div>
   </body>
 </html>
 <script>
+  var timerId;
+
   let news_SearchList = document.getElementById(`newsBox`);
 
   async function searchNews(q) {
@@ -49,13 +56,15 @@
 
       let data = await res.json();
       data = data.articles;
-      appendNews(data);
+      //   appendNews(data);
+      return data;
       console.log(data);
     } catch (err) {
       console.log(err);
     }
   }
-  searchNews(`tesla`);
+
+  //   searchNews(`apple`);
 
   function appendNews(news) {
     if (news == undefined) {
@@ -77,5 +86,27 @@
       div.append(img, title, hr);
       news_SearchList.append(div);
     });
+  }
+
+  async function main() {
+    let name = document.getElementById(`news`).value;
+
+    if (name.length < 3) {
+      return false;
+    }
+    let res = await searchNews(name);
+    let news_data = res.Search;
+    appendNews(news_data);
+    console.log(res);
+  }
+
+  //debounce
+  function debounce(func, delay) {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(function () {
+      func();
+    }, delay);
   }
 </script>
