@@ -67,6 +67,7 @@
       div.addEventListener(`click`, function () {
         newsData = el;
         window.localStorage.setItem(`newsData`, JSON.stringify(newsData));
+        window.location.href = `news.html`;
         // console.log(newsData);
       });
     });
